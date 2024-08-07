@@ -4,6 +4,7 @@
 # $argv0 - name of the script
 # [lindex $argv 0] 0th index of argv
 
+# proc for all components
 proc dflipflop {} {
     puts "creating d flip flop"
     set fp [open "dff.sv" w+]
@@ -16,6 +17,7 @@ proc 2mux1 {} {
 
 # ----------------------------------------
 
+# logic for proc calls
 if {[lindex $argv 0] == "2:1mux"} {
     2mux1
 }
