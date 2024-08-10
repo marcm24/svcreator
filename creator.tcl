@@ -8,7 +8,7 @@
 
 proc 2mux1 {} {
     puts "creating 2:1 mux"
-    close [open "2mux1.tv" a+]
+    close [open "2mux1.sv" a+]
 }
 
 proc dflipflop {bits} {
