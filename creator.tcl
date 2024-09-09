@@ -6,9 +6,41 @@
 
 # proc for all components
 
-proc 2mux1 {} {
+#check for bits to change via cla
+proc 2to1mux {} {
     puts "creating 2:1 mux"
-    close [open "2mux1.sv" a+]
+
+    set 2mux1 {
+    module 2mux1 #(parameter WIDTH = 8)
+                  (input logic [WIDTH-1:0] d0, d1,
+                   input logic s,
+                   output logic [WIDTH-1:0] y);
+
+        assign y = s ? d1 : d0;
+    endmodule
+    }
+
+    set fp [open "2mux1.sv" a+]
+    puts $fp $2mux1
+
+}
+
+#check for bits to change via cla
+proc 3to1mux {} {
+    puts "creating 3:1 mux"
+
+    set 3mux1 {
+    module 3mux1 #(parameter WIDTH = 8)
+                  (input logic [WIDTH-1:0] d0, d1, d2,
+                   input logic [1:0] s,
+                   output logic [wIDTH-1:0] Y);
+        
+        assign y = s[1] ? d2 : (s[0] ? d1 : d0);
+    endmodule
+    }
+
+    set fp [open "3mux1.sv" a+]
+    puts $fp $3mux1
 }
 
 proc dflipflop {bits} {
@@ -39,7 +71,11 @@ proc dflipflop {bits} {
 
 # logic for proc calls
 if {[lindex $argv 0] == "2:1mux"} {
-    2mux1
+    2to1mux
+}
+
+if {[lindex $argv 0] == "3:1mux"} {
+    3to1mux
 }
 
 if {[lindex $argv 0] == "dff"} {
