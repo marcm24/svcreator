@@ -1,0 +1,5 @@
+# Ignore .tmp files (temporary files)
+*.tmp
+
+# Ignore .sv files (systemverilog files)
+*.sv
